@@ -1,0 +1,160 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <style>
+            body {
+  background-color: #FFE7DD;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #FFE7DD;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .item1 {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: #FFE7DD;
+    margin: auto;
+    
+  }
+  
+  .item2 {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: #975A5A;
+    border-radius: 54px;
+  }
+
+.container-image {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 700;
+    color: #525252;
+    font-family: "Century Gothic", sans-serif;
+}
+
+.image {
+    position: relative;
+  }
+
+  p {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: .5px 0;
+    margin-top: 15px;
+  }
+
+  /*Yung sa pinaka form style */
+
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #d3d3d3;
+}
+
+.submit{
+    background-color: #888888;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #F1B9B9;
+    border-color: #F1B9B9;
+    border-radius: 10px;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 15px;
+}
+
+.center-column{
+    width:600px;
+    height: 100%;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px 0px rgba(4,0,18,0.25);
+}
+
+.item-row{
+    background-color: #FFD9D9;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+}
+
+.btn-danger{
+    background-color: #C3A0A0;
+    border-color: #C3A0A0;
+    border-radius: 10px;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 15px;
+}
+
+.text {
+  font-size: 35px;
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 600;
+  color: #817C7C;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="item1">
+                <div class="container-image">
+                    <img src="{% static 'main/images/mainimage.png' %}" width="528px" height="388">
+                    <p><font size="35px">Hello, {{ user.username }} !</font></p>
+                    <p>Make sure to finish all your tasks for this day!</p>
+                </div>
+            </div>
+            <div class="item2">
+                <div class="center-column">
+                    <div class="text">
+                    <p>THINGS TO DO</p>
+                </div>
+
+                <form method="POST" action="/">
+                    {% csrf_token %}
+                    {{form.title}}
+                    <input class="btn btn-info" type="submit" name="Create Task">
+                </form>
+                    
+                    
+                    <div class="todo-list">
+                        {% for task in tasks %}
+                    <div class="item-row">
+                        <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                        {% if task.complete == True %}
+                        <strike>{{task}}</strike>
+                        {% else %}
+                        <span>{{task}}</span>
+                        {% endif %}
+                    </div>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <a href="{% url 'logout' %}"><p>LOGOUT</p></a>
+            </div>
+        </div>
+    </body>
+</html>

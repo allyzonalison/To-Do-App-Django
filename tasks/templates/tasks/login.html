@@ -1,0 +1,95 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>LOGIN</title>
+        <style>
+            body {
+                display: flex;
+                background-color: #FFE7DD;
+                align-items: center;
+                justify-content: center;
+            }
+            .center-column{
+                width:600px;
+                height: 70%;
+                padding:20px;
+                background-color: #fff;
+                border-radius: 30px;
+                box-shadow: 2px 2px 2px 0px rgba(4,0,18,0.25);
+                margin: auto;
+                align-items: center;
+                justify-content: center;
+            }
+            .image {
+                position: relative;
+            }
+            .container-image {
+                padding: 15%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                font-weight: 700;
+                color: #525252;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+                font-family: "Century Gothic", sans-serif;
+            }
+
+            input {
+                width: 421px;
+                padding: 20px;
+                margin: 3px;
+                align-self: center;
+                background-color: #F8F8F8;
+                border: none;
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+            }
+            button {
+                margin-top: 10px;
+                width: 421px;
+                height: 58px;
+                border: none;
+                border-radius: 14px;
+                background-color: #FFD9D9;
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+            }
+            p {
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+                font-weight: 100;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="center-column">
+            <div class="container-image">
+                <img src="{% static 'main/images/login.png' %}" width="208" height="296">
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" id="inputUsername" name="username" placeholder="Username" required autofocus><br>
+                <input type="password" id="inputPassword" name="password" placeholder="Password" required><br>
+                <button type="submit">LOGIN</button>
+                <a href="{% url 'register' %}"><p>I don't have an account</p></a>
+              </form> 
+            </div>
+        </div>
+    </body>
+</html>
+
+<!--
+TOMORROW:
+-if account already exists - output modals
+-when logging out, appear a modal
+-when logging in and wrong credentials, output a modal
+-- 
+
+-->

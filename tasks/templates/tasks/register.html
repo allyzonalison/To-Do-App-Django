@@ -1,0 +1,86 @@
+{% load static %}
+<html>
+    <head>
+        <title>REGISTER</title>
+        <style>
+            body {
+                display: flex;
+                background-color: #FFE7DD;
+                align-items: center;
+                justify-content: center;
+            }
+            .center-column{
+                width:787px;
+                height: 671px;
+                background-color: #fff;
+                border-radius: 30px;
+                box-shadow: 2px 2px 2px 0px rgba(4,0,18,0.25);
+                margin: auto;
+                align-items: center;
+                justify-content: center;
+            }
+            .image {
+                position: relative;
+            }
+            .container-image {
+                padding: 5%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                font-weight: 700;
+                color: #525252;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+                font-family: "Century Gothic", sans-serif;
+            }
+
+            input {
+                width: 499px;
+                padding: 20px;
+                margin: 3px;
+                align-self: center;
+                background-color: #F8F8F8;
+                border: none;
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+            }
+            button {
+                margin-top: 10px;
+                width: 421px;
+                height: 58px;
+                border: none;
+                border-radius: 14px;
+                background-color: #FFD9D9;
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+            }
+            p {
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #817C7C;
+                font-weight: 100;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="center-column">
+            <div class="container-image">
+            <img src="{% static 'main/images/register.png' %}" width="416" height="255">
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" id="inputUsername" name="username" placeholder="Enter Username" required autofocus><br>
+                <input type="password" id="inputPassword1" name="password1" placeholder="Enter Password" required autofocus><br>
+                <input type="password" id="inputPassword2" name="password2" placeholder="Confirm Password" required autofocus><br>
+                <button type="submit">REGISTER</button>
+                <a href="{% url 'login' %}"><p>Sign-in</p></a>
+              </form> 
+        </div>
+        </div>
+
+    </body>
+</html>
